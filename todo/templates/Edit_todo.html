@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Todo</title>
+    <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { 
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+        background: #f5f7fa; 
+        padding: 40px 20px; 
+    }
+    form {
+        background: white; 
+        padding: 30px; 
+        border-radius: 10px; 
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1); 
+        max-width: 500px; 
+        margin: 0 auto;
+    }
+    h1 { color: #333; margin-bottom: 25px; }
+    input, textarea { 
+        width: 100%; 
+        padding: 12px; 
+        margin: 10px 0 20px 0; 
+        border: 1px solid #ddd; 
+        border-radius: 5px; 
+        font-family: inherit; 
+    }
+    input[type="submit"] { 
+        background: #667eea; 
+        color: white; 
+        border: none; 
+        cursor: pointer; 
+        font-weight: bold; 
+        transition: 0.3s; 
+    }
+    input[type="submit"]:hover { background: #764ba2; }
+    p { color: #666; margin: 10px 0; }
+    a { color: #667eea; }
+
+    .btn {
+        display: inline-block;
+        padding: 8px 16px;
+        font-size: 14px;
+        font-weight: 600;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: all 0.2s ease;
+        cursor: pointer;
+        margin-right: 5px;
+    }
+
+    .btn-edit {
+        background-color: #667eea;
+        color: white;
+    }
+
+    
+</style>
+</head>
+<body>
+    <h1>Edit your Task {{ user.username}}</h1>
+    <form method = 'POST'>
+        {% csrf_token %}
+        <!-- <input type = "text" name = "title" value="{{todo.title}}" required/> -->
+        <p> title: {{todo.title}} </p>
+        <br>
+        <input type = "text" name = "description" value="{{todo.description}}" required />
+        <br>
+        <input type = "submit" value = "Update Task"/>
+ 
+    </form>
+    <p > <a class="btn btn-edit" href = "{% url 'todo_list' %}"> Back to todo list </a></p>
+</body>
+</html>
